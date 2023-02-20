@@ -12,43 +12,55 @@
 
     <body>
 
-        <h1 id="autor">Autor: TU NOMBRE AQUÍ</h1>
+        <h1 id="autor">Autor: {{ name }}</h1>
 
         <!-- https://vuejs.org/v2/guide/index.html -->
+
         <div id="app">
-            <!--
-                 TODO: Aplicación VueJS. Ver archivo ./js/script.js
-               - Mostrar el título de la colección dentro de un componente Jumbotron de Bootstrap https://getbootstrap.com/docs/4.0/components/jumbotron/. En su interior habrá un <h1> con id "title" que mostrará el título de la colección
-               - Para cada item: (https://vuejs.org/v2/guide/index.html#Conditionals-and-Loops)
-                 - Crear un componente item-data
-            -->
-
+            <div class="jumbotron">
+                <h1 id="title">{{ col.collection.title }}</h1>
+            </div>
+            <div class="card-group"style="margin-left:100px;margin-right: 100px">
+                <div  v-for="obj in col.collection.items" v-for="obj in col.collection.items" is="item-data" v-if="obj.visible" v-bind:element="obj"></div>
+               <div v-else is="edit-form"  v-blind:elemet="obj"></div>
+            </div>
         </div>
-
 
 
         <!-- Plantilla para el componente edit-form -->
         <script type="text/x-template" id="editForm">
-
-            <!--
-                 TODO: Componente edit-form
-            -->
-
+            
         </script>
 
 
 
         <!-- Plantilla para el componente item-data -->
         <script type="text/x-template" id="itemData">
-
-            <!--
-                 TODO: Componente item-data
-            -->
-
+            <div class="card">
+            <div class="card-body">
+                <dl>
+                    <div v-for="pelis in obj.data">
+                        <dt>
+                            <h5 class="card-title">{{pelis.prompt}}</h5>
+                        </dt>
+                        <dd>
+                            <p class="card-text">{{pelis.value}}</p>
+                        </dd>
+                    </div>
+                </dl>
+                <a v-bind:href="obj.href" class="btn btn-primary">Ver</a>
+                <button class="btn btn-secondary" >Editar</button>
+                </div>
+            </div>
         </script>
 
 
         <!-- TODO: Cargar librería VueJS y archivo js/script.js -->
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script type="text/javascript" src="./js/script.js"></script>
+
 
     </body>
 
